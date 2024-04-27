@@ -1,4 +1,5 @@
-import photosGet, { PhotoItem, photoGet } from '@/actions/photos-get';
+import photoGet, { PhotoItem } from '@/actions/photo-get';
+import photosGet from '@/actions/photos-get';
 import Image from 'next/image';
 import React from 'react'
 
