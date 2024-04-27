@@ -1,4 +1,4 @@
-import photosGet from '@/actions/photos-get';
+import photosGet, { PhotoItem, photoGet } from '@/actions/photos-get';
 import Image from 'next/image';
 import React from 'react'
 
@@ -16,24 +16,19 @@ export async function generateStaticParams() {
 }
 
 export default async function FotoIdPage({ params }: ParamsProps) {
-  const data = await photosGet();
-
-  console.log(await generateStaticParams);
+  const data = await photoGet(params.id) as PhotoItem;
+  console.log(data);
 
 
   return (
     <section>
-      {data?.map((photo) => (
-        <div key={photo.id}>
-          <Image
-            src={photo.src}
-            alt={photo.title}
-            width={1500}
-            height={1500}
-            sizes='80vw'
-          />
-        </div>
-      ))}
+      <Image
+        src={data?.photo.src}
+        alt={data?.photo.title}
+        width={1500}
+        height={1500}
+        sizes='80vw'
+      />
     </section>
   )
 }
