@@ -5,7 +5,7 @@ import React from 'react'
 
 interface ParamsProps {
   params: {
-    id: number;
+    id: string;
   }
 }
 
@@ -17,19 +17,18 @@ export async function generateStaticParams() {
 }
 
 export default async function FotoIdPage({ params }: ParamsProps) {
-  const data = await photoGet(params.id) as PhotoItem;
-  console.log(await generateStaticParams());
-
+  // const data = await photoGet(params.id) as PhotoItem;
 
   return (
     <section>
-      <Image
+      {params.id}
+      {/* <Image
         src={data?.photo.src}
         alt={data?.photo.title}
         width={1500}
         height={1500}
         sizes='80vw'
-      />
+      /> */}
     </section>
   )
 }

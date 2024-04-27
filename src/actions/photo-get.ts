@@ -14,7 +14,7 @@ export interface PhotoItem {
   };
 }
 
-export default async function photoGet(id: number) {
+export default async function photoGet(id: string) {
   const response = await fetch(
     `https://dogsapi.origamid.dev/json/api/photo/${id}`
   );
