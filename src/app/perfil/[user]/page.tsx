@@ -7,7 +7,7 @@ interface ParamsProps {
 }
 
 export async function generateStaticParams() {
-  return { user: 'teste' }
+  return [{ user: 'teste' }];
 }
 
 export default async function UserPage({ params }: ParamsProps) {
