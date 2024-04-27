@@ -10,14 +10,14 @@ interface ParamsProps {
 
 export async function generateStaticParams() {
   const data = await photosGet();
-  return data.map((photo) => [({
-    id: photo.id,
-  })]);
+  return data.map((photo) => ({
+    id: `${photo.id}`,
+  }));
 }
 
 export default async function FotoIdPage({ params }: ParamsProps) {
   const data = await photoGet(params.id) as PhotoItem;
-  console.log(data);
+  console.log(await generateStaticParams());
 
 
   return (
