@@ -17,18 +17,18 @@ export async function generateStaticParams() {
 }
 
 export default async function FotoIdPage({ params }: ParamsProps) {
-  // const data = await photoGet(params.id) as PhotoItem;
+  const data = await photoGet(params.id) as PhotoItem;
 
   return (
     <section>
       {params.id}
-      {/* <Image
+      <Image
         src={data?.photo.src}
         alt={data?.photo.title}
         width={1500}
         height={1500}
         sizes='80vw'
-      /> */}
+      />
     </section>
   )
 }
