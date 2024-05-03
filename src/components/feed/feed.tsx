@@ -4,8 +4,8 @@ import { Photo } from '@/actions/photos-get'
 
 export default function Feed({ photos }: { photos: Photo[] }) {
   return (
-    <div>
+    <main className='animeLeft'>
       <FeedPhotos photos={photos} />
-    </div>
+    </main>
   )
 }
