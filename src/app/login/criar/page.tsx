@@ -1,9 +1,11 @@
+import LoginCriar from '@/components/login/login-form-criar'
 import React from 'react'
 
 export default async function CriarLoginPage() {
   return (
-    <main>
-      
-    </main>
+    <section className='animeLeft'>
+      <h1 className='title'>Cadastre-se</h1>
+      <LoginCriar />
+    </section>
   )
 }
