@@ -33,9 +33,6 @@ export default function LoginLostPassword() {
     setUrl(urlPage);
   }, []);
 
-  console.log(url);
-
-
   return (
     <form action={action}>
 
