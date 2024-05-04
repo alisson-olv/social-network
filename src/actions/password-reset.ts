@@ -3,7 +3,16 @@ import { PASSWORD_RESET } from '@/functions/api';
 import ApiError from '@/functions/api-error';
 import { redirect } from 'next/navigation';
 
-export default async function PasswordReset(state: {}, formData: FormData) {
+interface StateProps {
+  data: null;
+  error: string;
+  ok: boolean;
+}
+
+export default async function PasswordReset(
+  state: StateProps,
+  formData: FormData
+) {
   const login = formData.get('login') as string | null;
   const key = formData.get('key') as string | null;
   const password = formData.get('password') as string | null;
@@ -27,8 +36,11 @@ export default async function PasswordReset(state: {}, formData: FormData) {
     if (!response.ok) {
       throw new Error('Link expirado, resete a senha novamente.');
     }
+
+    return { data: null, error: '', ok: true };
   } catch (error: unknown) {
     return ApiError(error);
+  } finally {
+    if (state.ok) redirect('/login');
   }
-  redirect('/login');
 }
