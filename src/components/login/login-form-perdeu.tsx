@@ -1,23 +1,54 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../form/input'
 import Button from '../form/button'
 import PasswordLost from '@/actions/password-lost'
-import { useFormState } from 'react-dom'
+import { useFormState, useFormStatus } from 'react-dom'
 import ErrorMessage from '../helper/error-message'
 
+function ButtonForm() {
+  const { pending } = useFormStatus();
+
+  return (
+    <>
+      {pending ? (
+        <Button disabled label='Resetando...' />
+      ) : (
+        <Button label='Resetar' />
+      )}
+    </>
+  )
+}
+
 export default function LoginLostPassword() {
+  const [url, setUrl] = useState('');
   const [state, action] = useFormState(PasswordLost, {
     data: null,
     error: '',
     ok: false,
   })
 
+  useEffect(() => {
+    const urlPage = window.location.href.replace('perdeu', 'resetar');
+    setUrl(urlPage);
+  }, []);
+
+  console.log(url);
+
+
   return (
     <form action={action}>
-      <Input type='text' name='login' label='Email / Usuário' />
-      <ErrorMessage error={state.error} />
-      <Button label='Enviar email' />
+
+      {state.ok ? (
+        <p style={{ color: '#4c1' }}>Email enviado</p>
+      ) : (
+        <>
+          <Input type='text' name='login' label='Email / Usuário' />
+          <input type="hidden" name='url' value={url} />
+          <ErrorMessage error={state.error} />
+          <ButtonForm />
+        </>
+      )}
     </form>
   )
 }

@@ -5,12 +5,16 @@ import ApiError from '@/functions/api-error';
 export default async function PasswordLost(state: {}, formData: FormData) {
   const login = formData.get('login') as string | null;
   const urlPage = formData.get('url') as string | null;
+  console.log(urlPage);
 
   try {
     if (!login) throw new Error('Preencha os dados');
     const { url } = PASSWORD_LOST();
     const response = await fetch(url, {
       method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
       body: JSON.stringify({
         login,
         url: urlPage,
