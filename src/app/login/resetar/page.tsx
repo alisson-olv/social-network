@@ -1,7 +1,18 @@
+import LoginResetPassword from '@/components/login/login-form.resetar'
 import React from 'react'
 
-export default async function ResetarLoginPage() {
+interface ResetarLoginPageProps {
+  searchParams: {
+    key: string,
+    login: string,
+  }
+}
+
+export default async function ResetarLoginPage({ searchParams }: ResetarLoginPageProps) {
   return (
-    <main>ResetarLoginPage</main>
+    <section className='animeLeft'>
+      <h1 className='title'>Resete a senha</h1>
+      <LoginResetPassword keyToken={searchParams.key} login={searchParams.login} />
+    </section>
   )
 }
