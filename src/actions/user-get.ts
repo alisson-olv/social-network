@@ -4,7 +4,7 @@ import { USER_GET } from '@/functions/api';
 import ApiError from '@/functions/api-error';
 import { cookies } from 'next/headers';
 
-export interface User {
+interface User {
   id: number;
   email: string;
   username: string;
