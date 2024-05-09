@@ -1,5 +1,5 @@
 'use client'
-import PasswordReset from '@/actions/password-reset';
+import passwordReset from '@/actions/password-reset';
 import React from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import Input from '../form/input';
@@ -26,7 +26,7 @@ interface LoginResetPasswordProps {
 }
 
 export default function LoginResetPassword({ keyToken, login }: LoginResetPasswordProps) {
-  const [state, action] = useFormState(PasswordReset, {
+  const [state, action] = useFormState(passwordReset, {
     data: null,
     error: '',
     ok: false,

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import Input from '../form/input'
 import Button from '../form/button'
 import { useFormState, useFormStatus } from 'react-dom'
-import Login from '@/actions/login'
+import login from '@/actions/login'
 import ErrorMessage from '../helper/error-message'
 import styles from './login-form.module.css'
 import Link from 'next/link'
@@ -23,7 +23,7 @@ function FormButton() {
 }
 
 export default function LoginForm() {
-  const [state, action] = useFormState(Login, {
+  const [state, action] = useFormState(login, {
     ok: false,
     data: null,
     error: '',

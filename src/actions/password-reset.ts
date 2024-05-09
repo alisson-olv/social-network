@@ -9,7 +9,7 @@ interface StateProps {
   ok: boolean;
 }
 
-export default async function PasswordReset(
+export default async function passwordReset(
   state: StateProps,
   formData: FormData
 ) {

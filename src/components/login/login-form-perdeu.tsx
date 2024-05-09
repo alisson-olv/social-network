@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Input from '../form/input'
 import Button from '../form/button'
-import PasswordLost from '@/actions/password-lost'
+import passwordLost from '@/actions/password-lost'
 import { useFormState, useFormStatus } from 'react-dom'
 import ErrorMessage from '../helper/error-message'
 
@@ -22,7 +22,7 @@ function ButtonForm() {
 
 export default function LoginLostPassword() {
   const [url, setUrl] = useState('');
-  const [state, action] = useFormState(PasswordLost, {
+  const [state, action] = useFormState(passwordLost, {
     data: null,
     error: '',
     ok: false,

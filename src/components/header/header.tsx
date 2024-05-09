@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useContext } from 'react'
+import React from 'react'
 import styles from './header.module.css'
 import Image from 'next/image'
 import { useUser } from '@/context/user-context'
@@ -21,15 +21,15 @@ export default function Header() {
             priority
           />
         </Link>
-        {/* {userLogged ? (
+        {user ? (
           <Link className={styles.login} href={'/conta'}>
-            {userLogged.username}
+            {user.username}
           </Link>
         ) : (
           <Link className={styles.login} href={'/login'}>
             Login/Criar
           </Link>
-        )} */}
+        )}
       </nav>
     </header>
   )

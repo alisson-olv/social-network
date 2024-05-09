@@ -1,6 +1,11 @@
-import React from 'react'
+import { Metadata } from 'next';
+import React from 'react';
 
-export default async function EstatisticasPage() {
+export const metadata: Metadata = {
+  title: 'Estatísticas | Minha conta'
+}
+
+export default function EstatisticasPage() {
   return (
     <main>EstatisticasPage</main>
   )

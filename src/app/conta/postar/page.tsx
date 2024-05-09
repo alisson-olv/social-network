@@ -1,9 +1,13 @@
-import React from 'react'
+import ContaPhotoPost from '@/components/conta/conta-photo-post';
+import { Metadata } from 'next';
+import React from 'react';
 
-export default async function PostarPage() {
+export const metadata: Metadata = {
+  title: 'Postar | Minha conta'
+}
+
+export default function PostarPage() {
   return (
-    <main>
-      PostPage
-    </main>
+    <ContaPhotoPost />
   )
 }
