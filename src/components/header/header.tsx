@@ -7,7 +7,6 @@ import { useUser } from '@/context/user-context'
 
 export default function Header() {
   const { user } = useUser();
-  console.log(user);
 
   return (
     <header className={styles.header}>

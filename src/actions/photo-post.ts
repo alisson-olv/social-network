@@ -32,5 +32,5 @@ export default async function photoPost(state: {}, formData: FormData) {
   }
 
   revalidateTag('photos');
-  redirect('/');
+  redirect('/conta');
 }
