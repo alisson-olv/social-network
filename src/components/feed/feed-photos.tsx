@@ -8,7 +8,6 @@ export default function FeedPhotos({ photos }: { photos: Photo[] }) {
 
   return (
     <div>
-      <h1>Fotos</h1>
       <ul className={`${styles.feed} anime-left`}>
         {photos?.map((photo, i) => (
           <li className={styles.photo} key={photo.id + i}>

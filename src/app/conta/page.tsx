@@ -16,10 +16,10 @@ export default async function ContaPage() {
   return (
     <section>
       {data?.length ? (
-        <Feed photos={data} />
+        <Feed photos={data} user={user?.username} />
       ) : (
         <div>
-          <p>Nenhuma foto encontrada.</p>
+          <p style={{ paddingBottom: '10px' }}>Nenhuma foto encontrada.</p>
           <Link href={'/conta/postar'} className='button' style={{ display: 'inline-block', textAlign: 'center' }}>Postar foto</Link>
         </div>
       )}

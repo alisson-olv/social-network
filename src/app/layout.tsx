@@ -22,9 +22,9 @@ export default async function RootLayout({
     <html lang="pt-BR">
       <body className={type_second.variable}>
         <UserContextProvider user={data}>
-          <div className="app">
+          <div className="App">
             <Header />
-            <main className="appBody">
+            <main className="AppBody">
               {children}
             </main>
             <Footer />
