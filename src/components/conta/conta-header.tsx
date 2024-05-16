@@ -57,10 +57,6 @@ export default function ContaHeader() {
           <MinhasFotosIcon />
           {mobile && 'Minhas Fotos'}
         </Link>
-        <Link href="/conta/estatisticas" className={pathname === '/conta/estatisticas' ? 'active' : ''}>
-          <EstatisticasIcon />
-          {mobile && 'Estatísticas'}
-        </Link>
         <Link href="/conta/postar" className={pathname === '/conta/postar' ? 'active' : ''}>
           <AdicionarFotoIcon />
           {mobile && 'Adicionar Foto'}
