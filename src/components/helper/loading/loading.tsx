@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Loading.module.css';
+import styles from './loading.module.css';
 
-export default function Loading({modal}: {modal?: boolean}) {
+export default function Loading({ modal }: { modal?: boolean }) {
   const [step, setStep] = React.useState(0);
 
   React.useEffect(() => {
