@@ -29,62 +29,36 @@
 //     </section>
 //   )
 // }
-
-import photoGet, { PhotoData } from '@/actions/photo-get';
-import photosGet from '@/actions/photos-get';
-import PhotoContent from '@/components/photo/photo-content';
+'use client'
+import React, { useState, useEffect } from 'react';
+import PhotoContent from '@/components/photo/photo-content'; // Assuming correct path
+import photoGet from '@/actions/photo-get'; // Assuming correct path
 import { notFound } from 'next/navigation';
-import React from 'react';
+import Loading from '@/components/helper/loading/loading';
 
-export async function getStaticPaths() {
-  // Fetch all photo IDs from your API
-  const { data } = await photosGet();
-
-  // Map photo IDs to params object required by Next.js dynamic routes
-  if (!data) return null;
-  const paths = data.map((photo) => ({
-    params: { id: photo.id.toString() }
-  }));
-
-  return {
-    paths,
-    fallback: false // 404 for paths not generated at build time
+interface PhotoIdParams {
+  params: {
+    id: string;
   };
 }
 
-interface StaticProps {
-  params: {
-    id: string
-  }
-}
+export default function FotoIdPage({ params }: PhotoIdParams) {
+  const [data, setData] = useState<any>(null); // Store fetched data
 
-export async function getStaticProps({ params }: StaticProps) {
-  const { id } = params;
-
-  try {
-    const { data } = await photoGet(id);
-
-    if (!data) {
-      return {
-        notFound: true
-      };
-    }
-
-    return {
-      props: {
-        data
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await photoGet(params.id);
+      if (data) {
+        setData(data);
+      } else {
+        // Handle 404 or display a placeholder
       }
     };
-  } catch (error) {
-    console.error('Error fetching photo:', error);
-    return {
-      notFound: true
-    };
-  }
-}
 
-export default function FotoIdPage({ data }: { data: PhotoData }) {
-  if (!data) return notFound();
+    fetchData();
+  }, [params.id]); // Re-fetch on params change
+
+  if (!data) return <Loading />; // Or a placeholder
 
   return (
     <section className='container mainContainer'>
