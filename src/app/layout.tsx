@@ -5,6 +5,7 @@ import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import { userGet } from "@/actions/user-get";
 import UserContextProvider from "@/context/user-context";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "Dogs Next",
@@ -13,8 +14,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  modal,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
+  modal: ReactNode;
 }>) {
   const { data } = await userGet();
 
@@ -27,6 +30,7 @@ export default async function RootLayout({
             <main className="AppBody">
               {children}
             </main>
+            <div>{modal}</div>
             <Footer />
           </div>
         </UserContextProvider>

@@ -1,5 +1,4 @@
 'use client';
-
 import { PhotoData } from '@/actions/photo-get';
 import PhotoContent from '../photo/photo-content';
 import styles from './feed-modal.module.css';
