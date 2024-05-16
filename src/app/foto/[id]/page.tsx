@@ -1,5 +1,4 @@
 import photoGet from '@/actions/photo-get';
-import photosGet from '@/actions/photos-get';
 import PhotoContent from '@/components/photo/photo-content';
 import { notFound } from 'next/navigation';
 import React from 'react';
