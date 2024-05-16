@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: PhotoIdParams) {
 
 export async function generateStaticParams() {
   const { data } = await photosGet();
+  if (!data) { return [] }
   return data?.map((photo) => ({
     id: String(photo.id),
   }));
