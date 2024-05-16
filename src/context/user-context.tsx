@@ -1,5 +1,7 @@
 'use client'
-import React, { Dispatch, ReactNode, SetStateAction, createContext, useContext, useState } from 'react';
+import logout from '@/actions/logout';
+import validateToken from '@/actions/validate-token';
+import React, { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from 'react';
 
 interface User {
   id: number;
@@ -26,6 +28,16 @@ export const useUser = () => {
 
 export default function UserContextProvider({ children, user }: { children: ReactNode, user: User | null }) {
   const [userLogged, setUserLogged] = useState<User | null>(user)
+
+  useEffect(() => {
+    async function validate() {
+      const { ok } = await validateToken();
+      if (!ok) await logout();
+    }
+    if (userLogged) {
+      validate();
+    }
+  }, [userLogged])
 
   return (
     <UserContext.Provider value={{ user: userLogged, setUserLogged }}>

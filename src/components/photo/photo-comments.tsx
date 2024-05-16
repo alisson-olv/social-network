@@ -1,21 +1,21 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PhotoCommentsForm from './photo-comments-form';
 import styles from './photo-comments.module.css';
 import { useUser } from '@/context/user-context';
 import { Comment } from '@/actions/photo-get';
 
-const PhotoComments = (props: {
+export default function PhotoComments(props: {
   single: boolean;
   id: number;
   comments: Comment[];
-}) => {
-  const [comments, setComments] = React.useState(() => props.comments);
-  const commentsSection = React.useRef<HTMLUListElement>(null);
+}) {
+  const [comments, setComments] = useState(() => props.comments);
+  const commentsSection = useRef<HTMLUListElement>(null);
   const { user } = useUser();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (commentsSection.current) {
       commentsSection.current.scrollTop = commentsSection.current.scrollHeight;
     }
@@ -44,5 +44,3 @@ const PhotoComments = (props: {
     </>
   );
 };
-
-export default PhotoComments;

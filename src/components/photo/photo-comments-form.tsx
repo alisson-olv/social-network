@@ -6,7 +6,7 @@ import EnviarIcon from '@/icons/enviar-icon';
 import ErrorMessage from '../helper/error-message';
 import { Comment } from '@/actions/photo-get';
 import commentPost from '@/actions/comment-post';
-import React from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -24,7 +24,7 @@ export default function PhotoCommentsForm({
 }: {
   single: boolean;
   id: number;
-  setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
+  setComments: Dispatch<SetStateAction<Comment[]>>;
 }) {
   const [state, action] = useFormState(commentPost, {
     ok: false,
@@ -32,14 +32,14 @@ export default function PhotoCommentsForm({
     error: '',
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (state.ok && state.data) {
       setComments((comments) => [...comments, state.data]);
       setComment('');
     }
   }, [state, setComments]);
 
-  const [comment, setComment] = React.useState('');
+  const [comment, setComment] = useState('');
 
   return (
     <form
