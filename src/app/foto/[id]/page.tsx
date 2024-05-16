@@ -1,34 +1,37 @@
-import photoGet, { PhotoItem } from '@/actions/photo-get';
-import photosGet from '@/actions/photos-get';
-import Image from 'next/image';
-import React from 'react'
+import photoGet from '@/actions/photo-get';
+import PhotoContent from '@/components/photo/photo-content';
+import { notFound } from 'next/navigation';
+import React from 'react';
 
-interface ParamsProps {
+interface PhotoIdParams {
   params: {
     id: string;
   }
 }
 
-export async function generateStaticParams() {
-  const { data } = await photosGet();
-  return data?.map((photo) => ({
-    id: `${photo.id}`,
-  }));
+export async function generateMetadata({ params }: PhotoIdParams) {
+  const { data } = await photoGet(params.id);
+
+  if (!data) return { title: 'Fotos' };
+  return {
+    title: `${data.photo.title} | ${(data.photo.author).charAt(0).toUpperCase()}${(data.photo.author).substring(1)}`,
+  }
 }
 
-export default async function FotoIdPage({ params }: ParamsProps) {
-  const data = await photoGet(params.id) as PhotoItem;
+// export async function generateStaticParams() {
+//   const { data } = await photosGet();
+//   return data?.map((photo) => ({
+//     id: `${ photo.id } `,
+//   }));
+// }
 
+export default async function FotoIdPage({ params }: PhotoIdParams) {
+  const { data } = await photoGet(params.id);
+
+  if (!data) return notFound();
   return (
-    <section>
-      {params.id}
-      <Image
-        src={data?.photo.src}
-        alt={data?.photo.title}
-        width={1500}
-        height={1500}
-        sizes='80vw'
-      />
+    <section className='container mainContainer'>
+      <PhotoContent data={data} single={true} />
     </section>
   )
 }
