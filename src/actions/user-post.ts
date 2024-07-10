@@ -2,6 +2,7 @@
 
 import { USER_POST } from '@/functions/api';
 import ApiError from '@/functions/api-error';
+import login from './login';
 
 export default async function userPost(state: {}, formData: FormData) {
   const username = formData.get('username') as string | null;
@@ -19,6 +20,10 @@ export default async function userPost(state: {}, formData: FormData) {
     });
 
     if (!response.ok) throw new Error('Email já utilizado.');
+
+    if (response.ok) {
+      await login(state, formData);
+    }
 
     return { data: null, error: '', ok: true };
   } catch (error: unknown) {
